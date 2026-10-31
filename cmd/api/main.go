@@ -851,6 +851,7 @@ func paidShellCommand(baseURL string, response analysisSessionResponse) string {
 		`printf 'Upload these logs for paid deterministic analysis? [y/N] '`,
 		`read -r OK`,
 		`case "$OK" in y|Y|yes|YES) ;; *) echo "Upload cancelled"; exit 1 ;; esac`,
+		`  export CLAUDE_ANALYZER_SCAN_LIMIT=100`,
 		`curl -fsS -X PUT ` + shellQuote(uploadURL) + ` \`,
 		`  -H ` + shellQuote("Authorization: Bearer "+response.Token) + ` \`,
 		`  -H 'Content-Type: application/gzip' \`,
